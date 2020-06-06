@@ -25,16 +25,13 @@ d3.json(queryUrl, function(data) {
 						'<b>Magnitude</b>: ' +
 						data.features[i].properties.mag +
 						'<br>' +
-						'<b>Signficance</b>: ' +
-						data.features[i].properties.sig +
-						'<br>' +
 						'<b>Lat Lng</b>: ' +
 						data.features[i].geometry.coordinates[1] +
 						',' +
 						data.features[i].geometry.coordinates[0] +
 						'<br>' +
 						'<b>Depth</b>: ' +
-						data.features[i].geometry.coordinates[2] +
+						data.features[i].properties.depth +
 						' Kilometers<br>'
 				)
 			);
@@ -53,16 +50,13 @@ d3.json(queryUrl, function(data) {
 						'<b>Magnitude</b>: ' +
 						data.features[i].properties.mag +
 						'<br>' +
-						'<b>Signficance</b>: ' +
-						data.features[i].properties.sig +
-						'<br>' +
 						'<b>Lat Lng</b>: ' +
 						data.features[i].geometry.coordinates[1] +
 						',' +
 						data.features[i].geometry.coordinates[0] +
 						'<br>' +
 						'<b>Depth</b>: ' +
-						data.features[i].geometry.coordinates[2] +
+						data.features[i].properties.depth +
 						' Kilometers<br>'
 				)
 			);
@@ -81,16 +75,13 @@ d3.json(queryUrl, function(data) {
 						'<b>Magnitude</b>: ' +
 						data.features[i].properties.mag +
 						'<br>' +
-						'<b>Signficance</b>: ' +
-						data.features[i].properties.sig +
-						'<br>' +
 						'<b>Lat Lng</b>: ' +
 						data.features[i].geometry.coordinates[1] +
 						',' +
 						data.features[i].geometry.coordinates[0] +
 						'<br>' +
 						'<b>Depth</b>: ' +
-						data.features[i].geometry.coordinates[2] +
+						data.features[i].properties.depth +
 						' Kilometers<br>'
 				)
 			);
@@ -109,16 +100,13 @@ d3.json(queryUrl, function(data) {
 						'<b>Magnitude</b>: ' +
 						data.features[i].properties.mag +
 						'<br>' +
-						'<b>Signficance</b>: ' +
-						data.features[i].properties.sig +
-						'<br>' +
 						'<b>Lat Lng</b>: ' +
 						data.features[i].geometry.coordinates[1] +
 						',' +
 						data.features[i].geometry.coordinates[0] +
 						'<br>' +
 						'<b>Depth</b>: ' +
-						data.features[i].geometry.coordinates[2] +
+						data.features[i].properties.depth +
 						' Kilometers<br>'
 				)
 			);
@@ -137,16 +125,13 @@ d3.json(queryUrl, function(data) {
 						'<b>Magnitude</b>: ' +
 						data.features[i].properties.mag +
 						'<br>' +
-						'<b>Signficance</b>: ' +
-						data.features[i].properties.sig +
-						'<br>' +
 						'<b>Lat Lng</b>: ' +
 						data.features[i].geometry.coordinates[1] +
 						',' +
 						data.features[i].geometry.coordinates[0] +
 						'<br>' +
 						'<b>Depth</b>: ' +
-						data.features[i].geometry.coordinates[2] +
+						data.features[i].properties.depth +
 						' Kilometers<br>'
 				)
 			);
@@ -165,16 +150,13 @@ d3.json(queryUrl, function(data) {
 						'<b>Magnitude</b>: ' +
 						data.features[i].properties.mag +
 						'<br>' +
-						'<b>Signficance</b>: ' +
-						data.features[i].properties.sig +
-						'<br>' +
 						'<b>Lat Lng</b>: ' +
 						data.features[i].geometry.coordinates[1] +
 						',' +
 						data.features[i].geometry.coordinates[0] +
 						'<br>' +
 						'<b>Depth</b>: ' +
-						data.features[i].geometry.coordinates[2] +
+						data.features[i].properties.depth +
 						' Kilometers<br>'
 				)
 			);
