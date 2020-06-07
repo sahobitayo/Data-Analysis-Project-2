@@ -29,42 +29,21 @@
 </head>
 <body>
 
-  <!-- The div that holds the drop down and the search box -->
-  <!-- <div id="dropdown form"></div>
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="latInput">Lat</label>
+        <input type="text" class="form-control" id="latInput" placeholder="Enter a Lat">
+        <label for="longInput">Long</label>
+        <input type="text" class="form-control" id="longInput" placeholder="Enter a Long">
+      </div>
+      <button id="submit" type="submit" class="btn btn-default">Plot Lat & Long</button>
+    </form>
 
-  <form class="margin_top">
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Latitude">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Longitude">
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </fieldset>
-  </form> -->
-
-  <form>
-      <div class="form-group">
-        <label for="disabledTextInput">Latitude</label>
-        <input type="text" id="disabledTextInput" class="form-control" placeholder="Example: 10.961040">
-      </div>
-      <div class="form-group">
-        <label for="disabledTextInputLongitude">Longitude</label>
-        <input type="text" id="disabledTextInputLongitude" class="form-control" placeholder="Example: -74.800957">
-      </div>
-      <div class="form-group">
-        <label for="disabledSelect">Select Nautical Radius</label>
-        <select id="disabledSelect" class="form-control">
-          <option>Miles</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
 
   <!-- The div that holds our map -->
   <div id="map"></div>
+
+
 
   <!-- Leaflet JavaScript -->
   <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
