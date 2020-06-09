@@ -29,30 +29,20 @@
 </head>
 <body>
 
-  <!-- The div that holds the drop down and the search box -->
-  <!-- <div id="dropdown form"></div>
-
-  <form class="margin_top">
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Latitude">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Longitude">
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </fieldset>
-  </form> -->
+  <!-- <div id="header"> 
+    Lat:  <input type="text" id="lat">
+    Long:  <input type="text" id="lng">
+    <button onclick="buttonClick()">Click</button>
+  </div> -->
 
   <form>
       <div class="form-group">
-        <label for="disabledTextInput">Latitude</label>
-        <input type="text" id="disabledTextInput" class="form-control" placeholder="Example: 10.961040">
+        <label for="lat">Latitude</label>
+        <input type="text" id="latInput" class="form-control" placeholder="Example: 10.961040">
       </div>
       <div class="form-group">
         <label for="disabledTextInputLongitude">Longitude</label>
-        <input type="text" id="disabledTextInputLongitude" class="form-control" placeholder="Example: -74.800957">
+        <input type="text" id="longInput" class="form-control" placeholder="Example: -74.800957">
       </div>
       <div class="form-group">
         <label for="disabledSelect">Select Nautical Radius</label>
@@ -60,7 +50,7 @@
           <option>Miles</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
   </form>
 
   <!-- The div that holds our map -->

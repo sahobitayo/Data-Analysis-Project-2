@@ -5,11 +5,13 @@ var runMarkers = [];
 
 var queryUrl = 'static/js/earthquakes_data_json.geojson';
 
+var zoomMap = 2;
+
 // Perform a GET request to the query URL
 d3.json(queryUrl, function(data) {
 	// Once we get a response, send the data.features object to the createFeatures function
 	for (var i = 0; i < data.features.length; i++) {
-		console.log(data.features[i].properties.mag);
+		// console.log(data.features[i].properties.mag);
 		// var  earthquakeData = data[i];
 		if (data.features[i].properties.mag > 5 && data.features[i].properties.mag <= 5.5) {
 			runMarkers.push(
@@ -17,7 +19,7 @@ d3.json(queryUrl, function(data) {
 					stroke: false,
 					fillColor: 'blue',
 					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 500
+					radius: data.features[i].properties.mag * 1000 * zoomMap
 				}).bindPopup(
 					'<i>' +
 						data.features[i].properties.place +
@@ -42,7 +44,7 @@ d3.json(queryUrl, function(data) {
 					stroke: false,
 					fillColor: 'LightGreen',
 					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 1000
+					radius: data.features[i].properties.mag * zoomMap
 				}).bindPopup(
 					'<i>' +
 						data.features[i].properties.place +
@@ -67,7 +69,7 @@ d3.json(queryUrl, function(data) {
 					stroke: false,
 					fillColor: 'green',
 					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 1500
+					radius: data.features[i].properties.mag * 4000 * zoomMap
 				}).bindPopup(
 					'<i>' +
 						data.features[i].properties.place +
@@ -92,7 +94,7 @@ d3.json(queryUrl, function(data) {
 					stroke: false,
 					fillColor: 'yellow',
 					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 2000
+					radius: data.features[i].properties.mag * 6000 * zoomMap
 				}).bindPopup(
 					'<i>' +
 						data.features[i].properties.place +
@@ -117,7 +119,7 @@ d3.json(queryUrl, function(data) {
 					stroke: false,
 					fillColor: 'orange',
 					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 3000
+					radius: data.features[i].properties.mag * 8000 * zoomMap
 				}).bindPopup(
 					'<i>' +
 						data.features[i].properties.place +
@@ -142,7 +144,7 @@ d3.json(queryUrl, function(data) {
 					stroke: false,
 					fillColor: 'black',
 					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 4000
+					radius: data.features[i].properties.mag * 10000 * zoomMap
 				}).bindPopup(
 					'<i>' +
 						data.features[i].properties.place +
@@ -178,21 +180,21 @@ d3.json(queryUrl, function(data) {
 		}
 	);
 
-	var street = L.tileLayer(
-		'https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}',
-		{
-			attribution:
-				'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-			maxZoom: 18,
-			minZoom: 1,
-			id: 'mapbox.street',
-			accessToken: API_KEY
-		}
-	);
+	// var street = L.tileLayer(
+	// 	'https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}',
+	// 	{
+	// 		attribution:
+	// 			'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	// 		maxZoom: 18,
+	// 		minZoom: 1,
+	// 		id: 'mapbox.street',
+	// 		accessToken: API_KEY
+	// 	}
+	// );
 
 	var myMap = L.map('map', {
 		center: [ 25, -20 ],
-		zoom: 3,
+		zoom: zoomMap,
 		layers: [ satellite, runLayer ]
 	});
 
@@ -202,14 +204,40 @@ d3.json(queryUrl, function(data) {
 	};
 
 	var baseMaps = {
-		Satellite: satellite,
-		Street: street
+		Satellite: satellite
+		// Street: street
 	};
+
+	function handleSubmit(event) {
+		// Prevent the page from refreshing
+		event.preventDefault();
+
+		// Select the input value from the form
+		var latitude = d3.select('#latInput').node().value;
+		var longitude = d3.select('#longInput').node().value;
+		console.log(latitude, longitude);
+
+		// // clear the input value
+		d3.select('#latInput').node().value = '';
+		d3.select('#longInput').node().value = '';
+		buttonClick(latitude, longitude);
+	}
+
+	function buttonClick(latitude, longitude) {
+		console.log('it run the function');
+		myMap.flyTo([ latitude, longitude ], 6, {
+			animate: true,
+			duration: 2 // in seconds
+		});
+	}
+
+	document.getElementById('submitBtn').addEventListener('click', handleSubmit);
+
 	// Add a tile layer (the background map image) to our map
 	// We use the addTo method to add objects to our map
 	L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
-	var legend = L.control({ position: 'bottomright' });
+	var legend = L.control({ position: 'bottomleft' });
 
 	legend.onAdd = function(map) {
 		var div = L.DomUtil.create('div', 'legend'),

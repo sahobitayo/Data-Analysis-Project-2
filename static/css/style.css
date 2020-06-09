@@ -10,7 +10,7 @@ html {
 }
 
 div #legend {
-	height: 200px;
+	height: 220px;
 	width: 100px;
 	padding: 10px;
 	background-color: white;
@@ -70,5 +70,5 @@ div.info {
 }
 
 #map {
-	margin-top: 25px;
+	margin-top: 50px;
 }
