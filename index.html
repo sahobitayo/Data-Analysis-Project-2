@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>EAT for Oil&Gas Industry</title>
+  <title>EAT for Oil & Gas Industry</title>
 
   <!-- bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -29,21 +29,38 @@
 </head>
 <body>
 
-    <form class="form-inline">
-      <div class="form-group">
-        <label for="latInput">Lat</label>
-        <input type="text" class="form-control" id="latInput" placeholder="Enter a Lat">
-        <label for="longInput">Long</label>
-        <input type="text" class="form-control" id="longInput" placeholder="Enter a Long">
-      </div>
-      <button id="submit" type="submit" class="btn btn-default">Plot Lat & Long</button>
-    </form>
+  <!-- <div id="header"> 
+    Lat:  <input type="text" id="lat">
+    Long:  <input type="text" id="lng">
+    <button onclick="buttonClick()">Click</button>
+  </div> -->
 
+  <form>
+      <div class="form-group">
+        <label for="lat">Latitude</label>
+        <input type="text" id="latInput" class="form-control" placeholder="Example: 10.961040">
+      </div>
+      <div class="form-group">
+        <label for="disabledTextInputLongitude">Longitude</label>
+        <input type="text" id="longInput" class="form-control" placeholder="Example: -74.800957">
+      </div>
+      <div class="form-group">
+        <!-- <label for="disabledSelect">Select Nautical Radius</label>
+        <input type="text" id="radiusInput" class="form-control"> -->
+        <label for="radius">Choose a search radius:</label>
+
+        <select name="radius" id="radiusInput">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+      <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+  </form>
 
   <!-- The div that holds our map -->
   <div id="map"></div>
-
-
 
   <!-- Leaflet JavaScript -->
   <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>

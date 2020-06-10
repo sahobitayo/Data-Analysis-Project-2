@@ -19,7 +19,27 @@
   <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
+  <form class="form-inline">
+    <div class="form-group">
+      <label for="latInput">Latitude</label>
+      <input type="text" class="form-control" id="latInput" placeholder="Example: 10.961040">
+      <label for="longInput">Longitude</label>
+      <input type="text" class="form-control" id="longInput" placeholder="Example: -74.800957">
+    <!-- </div>
+    <div class="form-group"> -->
 
+      <label for="radius">Choose a search radius:</label>  
+      <select name="radius" id="radiusInput">
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+    <!-- </div> -->
+      <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+      <!-- <button id="submit" type="submit" class="btn btn-default">Submit</button> -->
+    </div>
+  </form>
   <!-- The div that holds our map -->
   <div id="map"></div>
 

@@ -1,30 +1,74 @@
 body {
 	padding: 0;
 	margin: 0;
-  }
-  
-  #map 
-  body,
-  html {
-	height: 80%;
-  }
-  
-  .legend {
-	background-color: white;
-	color: rgb(0, 0, 0);
+}
+
+#map,
+body,
+html {
+	height: 100%;
+}
+
+div #legend {
+	height: 220px;
+	width: 100px;
 	padding: 10px;
-	border-radius: 6px;
-  }
-  
-  .legend i {
-	float: left;
-	margin-right: 8px;
-	width: 18px;
-	height: 18px;
-  }
-  .margin_top {
+	background-color: white;
+	border: 1px solid black;
+}
+
+div.color-purple {
+	background-color: purple;
+	height: 1em;
+	width: 20px;
+	display: inline-block;
+}
+
+div.color-blue {
+	background-color: blue;
+	height: 1em;
+	width: 20px;
+	display: inline-block;
+}
+
+div.color-green {
+	background-color: green;
+	height: 1em;
+	width: 20px;
+	display: inline-block;
+}
+
+div.color-yellow {
+	background-color: yellow;
+	height: 1em;
+	width: 20px;
+	display: inline-block;
+}
+
+div.color-orange {
+	background-color: orange;
+	height: 1em;
+	width: 20px;
+	display: inline-block;
+}
+
+div.color-red {
+	background-color: red;
+	height: 1em;
+	width: 20px;
+	display: inline-block;
+}
+
+div.info {
+	display: inline-block;
+	padding-left: 15px;
+	padding: .25em;
+}
+
+.margin_top {
 	margin-top: 50px;
-  }
-  #map {
-	margin-top: 25px;
-  }
+}
+
+#map {
+	margin-top: 50px;
+}
