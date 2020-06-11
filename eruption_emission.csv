@@ -1,0 +1,336 @@
+VolcanoNumber,VolcanoName
+211040,Stromboli
+211060,Etna
+221010,"Tair, Jebel at"
+221020,Zubair Group
+221041,Dallol
+221060,Alu-Dalafilla
+221080,Erta Ale
+221101,Nabro
+221113,Dabbahu
+221115,Manda Hararo
+221126,Ardoukoba
+222120,"Lengai, Ol Doinyo"
+223020,Nyamuragira
+223030,Nyiragongo
+224010,Cameroon
+233005,Mayotte
+233010,Karthala
+233020,"Fournaise, Piton de la"
+234000,Boomerang Seamount
+234011,McDonald Islands
+234010,Heard
+234070,Marion Island
+241040,Whakaari/White Island
+241050,Okataina
+241080,Tongariro
+241100,Ruapehu
+241130,Rumble III
+242030,Raoul Island
+242050,Monowai
+243030,Unnamed
+243040,Hunga Tonga-Hunga Ha'apai
+243060,Tofua
+243070,Lateiki
+243080,Home Reef
+243091,Unnamed
+243102,Curacoa
+243110,Niuafo'ou
+243120,Tafu-Maka
+243130,West Mata
+244000,Vailulu'u
+250030,Central Bismarck Sea
+251002,Kadovar
+251010,Bam
+251020,Manam
+251030,Karkar
+251050,Long Island
+251070,Ritter Island
+252010,Langila
+252070,Krummel-Garbuna-Welcker
+252080,Witori
+252120,Ulawun
+252140,Rabaul
+255020,Bagana
+255060,Kavachi
+256010,Tinakula
+257010,Suretamatai
+257020,Gaua
+257030,Ambae
+257040,Ambrym
+257050,Lopevi
+257060,Epi
+257070,Kuwae
+257100,Yasur
+258001,Eastern Gemini Seamount
+260010,Barren Island
+261030,Peuet Sague
+261080,Sinabung
+261120,Sorikmarapi
+261140,Marapi
+261160,Talang
+261170,Kerinci
+261220,Kaba
+261230,Dempo
+262000,Krakatau
+263090,Tangkuban Parahu
+263100,Papandayan
+263140,Galunggung
+263180,Slamet
+263200,Dieng Volcanic Complex
+263210,Sundoro
+263250,Merapi
+263280,Kelut
+263300,Semeru
+263310,Tengger Caldera
+263340,Raung
+263350,Ijen
+264010,Batur
+264020,Agung
+264030,Rinjani
+264040,Tambora
+264050,Sangeang Api
+264071,Ranakah
+264090,Inielika
+264100,Ebulobo
+264110,Iya
+264140,Kelimutu
+264150,Paluweh
+264160,Egon
+264180,Lewotobi
+264200,Leroboleng
+264220,Iliboleng
+264230,Lewotolo
+264250,Iliwerung
+264260,"Tara, Batu"
+264270,Sirung
+265060,Nila
+265090,Banda Api
+266010,Colo
+266020,Ambang
+266030,Soputan
+266100,Lokon-Empung
+266110,Mahawu
+267010,Ruang
+267020,Karangetang
+267040,Awu
+268010,Dukono
+268030,Ibu
+268040,Gamkonora
+268060,Gamalama
+268070,Makian
+272020,Kanlaon
+273010,Bulusan
+273030,Mayon
+273070,Taal
+273083,Pinatubo
+274020,Didicas
+282020,Io-Torishima
+282030,Suwanosejima
+282050,Kuchinoerabujima
+282060,Kikai
+282080,Aira
+282090,Kirishimayama
+282100,Unzendake
+282110,Asosan
+282120,Kujusan
+283010,Izu-Tobu
+283020,Hakoneyama
+283040,Ontakesan
+283070,Yakedake
+283090,Niigata-Yakeyama
+283110,Asamayama
+283120,Kusatsu-Shiranesan
+283150,Nasudake
+283170,Adatarayama
+283180,Azumayama
+283220,Chokaisan
+283230,Akita-Komagatake
+283260,Akita-Yakeyama
+284010,Izu-Oshima
+284040,Miyakejima
+284070,Myojinsho
+284096,Nishinoshima
+284090,Izu-Torishima
+284100,Kaitoku Seamount
+284120,Ioto
+284131,Minami-Hiyoshi
+284133,Fukujin
+284130,Fukutoku-Oka-no-Ba
+284141,Ahyi
+284142,Supply Reef
+284140,Farallon de Pajaros
+284170,Pagan
+284202,Ruby
+284200,Anatahan
+284211,NW Rota-1
+285020,Hokkaido-Komagatake
+285030,Toya
+285040,Shikotsu
+285050,Tokachidake
+285070,Akan
+290030,Chachadake [Tiatia]
+290070,Etorofu-Yakeyama [Grozny Group]
+290100,Moyorodake [Medvezhia]
+290120,Kolokol Group
+290150,Chirpoi
+290160,Unnamed
+290200,Ketoi
+290240,Sarychev Peak
+290250,Raikoke
+290260,Chirinkotan
+290270,Ekarma
+290360,Chikurachki
+290380,Ebeko
+290390,Alaid
+300010,Kambalny
+300060,Mutnovsky
+300070,Gorely
+300090,Koryaksky
+300100,Avachinsky
+300125,Akademia Nauk
+300120,Zhupanovsky
+300130,Karymsky
+300230,Kizimen
+300240,Tolbachik
+300250,Bezymianny
+300260,Klyuchevskoy
+300270,Sheveluch
+311020,Kiska
+311060,Semisopochnoi
+311070,Gareloi
+311110,Kanaga
+311120,Great Sitkin
+311130,Kasatochi
+311161,Korovin
+311180,Seguam
+311190,Amukta
+311240,Cleveland
+311290,Okmok
+311300,Bogoslof
+311310,Makushin
+311320,Akutan
+311340,Westdahl
+311360,Shishaldin
+312030,Pavlof
+312060,Kupreanof
+312070,Veniaminof
+312110,Chiginagak
+312131,Ukinrek Maars
+312160,Trident
+312260,Fourpeaked
+313010,Augustine
+313030,Redoubt
+313040,Spurr
+321050,St. Helens
+331020,CoAxial Segment
+331021,Axial Seamount
+331030,Cleft Segment
+331031,North Gorda Ridge Segment
+332000,Loihi
+332010,Kilauea
+332020,Mauna Loa
+333010,Teahitia
+333020,Rocard
+333030,Moua Pihaa
+333060,Macdonald
+334040,Northern EPR at 10.7°N
+334050,Northern EPR at 9.8°N
+334070,Galapagos Rift
+334100,Southern EPR at 8°S
+334120,Southern EPR-Segment K
+341021,Socorro
+341040,Colima
+341090,Popocatepetl
+341120,"Chichon, El"
+341130,Tacana
+342030,Santa Maria
+342080,Acatenango
+342090,Fuego
+342110,Pacaya
+343020,Santa Ana
+343030,Izalco
+343100,San Miguel
+344020,San Cristobal
+344040,Telica
+344070,"Negro, Cerro"
+344090,Momotombo
+344100,Masaya
+344120,Concepcion
+345020,Rincon de la Vieja
+345033,Arenal
+345040,Poas
+345060,Irazu
+345070,Turrialba
+351020,"Ruiz, Nevado del"
+351050,"Huila, Nevado del"
+351060,Purace
+351080,Galeras
+352010,Reventador
+352020,Guagua Pichincha
+352050,Cotopaxi
+352080,Tungurahua
+352090,Sangay
+353010,Fernandina
+353020,Wolf
+353040,Alcedo
+353050,"Negra, Sierra"
+353060,"Azul, Cerro"
+353080,Marchena
+354006,Sabancaya
+354010,"Misti, El"
+354020,Ubinas
+355020,Guallatiri
+355040,Irruputuncu
+355070,San Pedro-San Pablo
+355100,Lascar
+357010,Tupungatito
+357020,San Jose
+357040,Planchon-Peteroa
+357060,"Azul, Cerro"
+357070,"Chillan, Nevados de"
+357091,Callaqui
+357090,Copahue
+357100,Lonquimay
+357110,Llaima
+357120,Villarrica
+357140,Carran-Los Venados
+357150,Puyehue-Cordon Caulle
+358020,Calbuco
+358041,Chaiten
+358057,"Hudson, Cerro"
+358059,Arenales
+358060,Lautaro
+360050,Soufriere Hills
+360060,Soufriere Guadeloupe
+360101,"Watt, Morne"
+360150,Soufriere St. Vincent
+360160,Kick 'em Jenny
+372010,Vestmannaeyjar
+372020,Eyjafjallajokull
+372070,Hekla
+373010,Grimsvotn
+373030,Bardarbunga
+373050,Kverkfjoll
+373060,Askja
+373080,Krafla
+376010,Jan Mayen
+377020,East Gakkel Ridge at 85°E
+382050,Terceira
+383010,La Palma
+383020,Hierro
+384010,Fogo
+386011,Nightingale Island
+386010,Tristan da Cunha
+390020,Erebus
+390030,Deception Island
+390070,Southern Thule
+390081,Montagu Island
+390080,Bristol Island
+390090,Saunders
+390130,Zavodovski
+390140,Protector Seamounts
+284193,South Sarigan Seamount
+385052,Walvis Ridge at 33°S
+242005,Havre Seamount
+284305,Mariana Back-Arc Segment at 15.5°N
