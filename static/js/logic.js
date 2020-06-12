@@ -243,6 +243,8 @@ d3.json(queryUrl, function(data) {
 			animate: true,
 			duration: 2 // in seconds
 		});latlongMarker.addTo(myMap);latlongRadius.addTo(myMap);
+		var earthquakesMarkers = buildLocalEarthquates(circleCenter, CircleOptions, theRadius);
+		earthquakesMarkers.addTo(myMap);
 	}
 	// function SelectPoints(latitude,longitude){ var dist = document.getElementById("radiusInput").value;
 	// 	xy = [latitude,longitude];  //center point of circle

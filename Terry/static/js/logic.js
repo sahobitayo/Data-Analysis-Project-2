@@ -56,7 +56,7 @@ function createCircles(feature,latlong){
 // Create popups to display earthquake info
 var earthQuakes = L.geoJSON(data,{
     onEachFeature: function(feature,layer){
-        layer.bindPopup("Place:"+feature.properties.place + "<br> Magnitude: "+feature.properties.mag+"<br> Time: "+new Date(feature.properties.time));
+        layer.bindPopup("Place:"+feature.properties.place + "<br> Magnitude: "+feature.properties.mag+"<br> Time: "+new Date(feature.properties.date));
     },
       pointToLayer: createCircles
 
@@ -120,40 +120,18 @@ function createMap(earthQuakes) {
 			fillOpacity: 0
 		 }
 		var latlongMarker = L.marker([latitude, longitude]).bindPopup("Lat: "+latitude + "</br>" + "Long: "+longitude);
-		var latlongRadius = L.circle(circleCenter, theRadius, circleOptions).bindPopup(dist + " miles");
+		// var latlongRadius = L.circle(circleCenter, theRadius, circleOptions).bindPopup(dist + " miles");
+		var latlongRadius = L.circle(circleCenter, theRadius, circleOptions);
 		
 		myMap.flyTo([ latitude, longitude ], 6, {
 			animate: true,
 			duration: 2 // in seconds
 		});latlongMarker.addTo(myMap);latlongRadius.addTo(myMap);
+		var earthquakesMarkers = buildLocalEarthquates(circleCenter, CircleOptions, theRadius);
+		earthquakesMarkers.addTo(myMap);
 	}
-	// function SelectPoints(latitude,longitude){ var dist = document.getElementById("radiusInput").value;
-	// 	xy = [latitude,longitude];  //center point of circle
-
-	// 	var theRadius = parseInt(dist) * 1609.34  //1609.34 meters in a mile 
-	// 	//dist is a string so it's convered to an Interger.
-	
-	// 	selPts.length =0;  //Reset the array if selecting new points
-	
-	// 	layer1.eachLayer(function (layer) {
-	// 		// Lat, long of current point as it loops through.
-	// 		layer_lat_long = layer.getLatLng();
-	
-	// 		// Distance from our circle marker To current point in meters
-	// 		distance_from_centerPoint = layer_lat_long.distanceTo(xy);
-	
-	// 		// See if meters is within radius, add the to array
-	// 		if (distance_from_centerPoint <= theRadius) {
-	// 		 selPts.push(layer.satellite); 
-	// 			// selPts.addTo(myMap)
-	// 		}
-	// 	});
 
 	document.getElementById('submitBtn').addEventListener('click', handleSubmit);
-	
-	// Add a tile layer (the background map image) to our map
-	// We use the addTo method to add objects to our map
-	// L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
 	var legend = L.control({ position: 'bottomleft' });
 
@@ -179,20 +157,6 @@ function createMap(earthQuakes) {
 
 	legend.addTo(myMap);
 }
-
-  
-//   // Add earthquake magnitude legend to map
-//   magLegend.onAdd = function() {
-//     var div = L.DomUtil.create("div", "legend"),
-//       labels = ["0-1", "1-2", "2-3", "3-4", "4-5", "5+"];
-  
-//     for (var i = 0; i < labels.length; i++) {
-//       div.innerHTML += '<i style="background:' + getColor(i) + '"></i> ' +
-//               labels[i] + '<br>' ;
-//     }
-//     return div;
-//   };magLegend.addTo(myMap);
-// }
 // Create function to set the color dependent on magnitude
 function getColor(mag) {
   
