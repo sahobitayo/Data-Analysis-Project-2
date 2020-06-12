@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EAT Oil & Gas</title>
+    <!-- Jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <!-- Leaftlet script for cluster group marking -->
+    <script src="https://unpkg.com/leaflet.featuregroup.subgroup@1.0.2/dist/leaflet.featuregroup.subgroup.js"></script>
+    <!-- Marker Cluster JS & CSS -->
+    <script type="text/javascript"
+        src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
+    <!-- D3 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Our CSS -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div class="container-fluid text-center">
+            <h2>EAT For Oil and Gas</h2>
+            <p>This is a visual analysis of earthquake, volcanoes with their emission events that occured around the world  from 
+                approximately 1960 till 2017. The data was retrieved from the <u><a class="link" href="https://volcano.si.axismaps.io/"
+                        target="_blank">Smithsonian National Museum History- Global Volcanism Program</a></u>
+                After downloading the data onto our local systems, Pandas/Jupyter notebook were used to read and join all CSV files. 
+                The combined files were converted to a Postgres database. SQL queries in Pandas were used for plotting the data.
+                A Flask API was used to retrieve the data from the Postgres database and plotted using Leaflet, D3 and Plotly. 
+                The website was deployed onto Heroku.
+            </p>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-toolbar " role="group" aria-label="...">
+                        <button type="button" class="btn button left-margin" value="2010"
+                            onclick="getYearCharts(this.value)">2010</button>
+                        <button type="button" class="btn button left-margin" value="2011"
+                            onclick="getYearCharts(this.value)">2011</button>
+                        <button type="button" class="btn button left-margin" value="2012"
+                            onclick="getYearCharts(this.value)">2012</button>
+                        <button type="button" class="btn button left-margin" value="2013"
+                            onclick="getYearCharts(this.value)">2013</button>
+                        <button type="button" class="btn button left-margin" value="2014"
+                            onclick="getYearCharts(this.value)">2014</button>
+                        <button type="button" class="btn button left-margin" value="2015"
+                            onclick="getYearCharts(this.value)">2015</button>
+                        <button type="button" class="btn button left-margin" value="2016"
+                            onclick="getYearCharts(this.value)">2016</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="btn-toolbar" role="group" aria-label="...">
+                        <button type="button" class="btn button pull-right"><a
+                                href="https://severe-weather-analysis.herokuapp.com/statewide">State Wide
+                                Viz</a></button>
+                        <button type="button" class="btn button pull-right"><a href="#stacked-bar-chart">Stacked Bar
+                                Chart</a></button>
+                        <button type="button" class="btn button pull-right"><a href="#pie-chart">Pie Chart</a></button>
+                        <button type="button" class="btn button pull-right"><a href="#bubble-chart">Bubble
+                                Chart</a></button>
+                        <button type="button" class="btn button pull-right"><a href="#map">US Map</a></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <ul class="nav navbar-nav navbar-right">
+            <li><a href="#map" class="white-font">US Map</a></li>
+            <li><a href="#bubble-chart" class="white-font">Bubble Chart</a></li>
+            <li><a href="#pie-chart" class="white-font">Pie Chart</a></li>
+            <li><a href="#stacked-bar-chart" class="white-font">Stacked Bar Chart</a></li>
+          </ul> -->
+
+        </div>
+    </div>
+    <!-- The div where we will inject our map -->
+    <div id="map"></div>
+    <div class="row">
+        <div class="col-md-12 ">
+            <div id="bubble-chart"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10">
+            <div id="pie-chart"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="stacked-bar-chart"></div>
+        </div>
+    </div>
+
+
+    <!-- <script src="{{ url_for('static', filename='js/logic.js') }}"></script> -->
+    <script type="text/javascript" src="static/js/logic.js"></script>
+
+</body>
+
+</html>
