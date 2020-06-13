@@ -1,2 +1,5 @@
 // API key
-const API_KEY = 'pk.eyJ1IjoiYW1zdGlja3NlbCIsImEiOiJjazd2M2t0ajQwNzh2M2ZwZTI3MTM0dGtvIn0.jlxY7gUgA-uUby4J8yWrPA';
+// const API_KEY = "YOUR KEY HERE!";
+
+// API key
+const API_KEY = "pk.eyJ1IjoidGVycnlwb3R0ZXIiLCJhIjoiY2thZzAzc2txMDI3ZDJxcG42MHRobzlpYSJ9.dYTSO_40kXIRMZkdzEHsjA";

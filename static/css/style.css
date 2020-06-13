@@ -1,3 +1,27 @@
+/* body {
+  padding: 0;
+  margin: 0;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}
+
+.legend {
+  background-color: white;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.legend i {
+  float: left;
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+} */
 body {
 	padding: 0;
 	margin: 0;
@@ -9,46 +33,12 @@ html {
 	height: 100%;
 }
 
-.state-heading{
-	padding-top:10px;
-	padding-bottom:10px;
-  }
-
 div #legend {
 	height: 220px;
 	width: 100px;
 	padding: 10px;
 	background-color: white;
 	border: 1px solid black;
-}
-
-a.link {
-	color: white;
-}
-
-.white-font{
-	color:white;
-}
-
-.jumbotron {
-	text-align: center;
-	color: white;
-	position: relative;
-	background:	#0077be;
-	margin-bottom: 0px;
-	background-size: cover;
-	overflow: hidden;
-}
-  
-.button {
-	  background-color :white;
-	  color: #021b3d;
-	  cursor: pointer;
-}
-  
-.button:hover {
-	  background-color: #76ffff;
-	  color: black;
 }
 
 div.color-purple {
