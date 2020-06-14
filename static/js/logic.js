@@ -14,7 +14,7 @@ function createCircles(feature, latlong) {
 		fillColor: getColor(feature.properties.mag),
 		color: "brown",
 		weight: 1,
-		opacity: 0,
+		opacity: 0.8,
 		fillOpacity: 0.6
 		// zIndexOffset: 1000
 	}
@@ -45,20 +45,20 @@ d3.json(url, function (data) {
 	createMap(earthQuakes);
 
 });
-// Filtered data for new earthquakes
-function buildLocalEarthquates(circleCenter, theRadius, localData) {
-	console.log("buildlocalEarthquates Data", circleCenter, theRadius);
-	let earthQuakeArray = [];
+// // Filtered data for new earthquakes
+// function buildLocalEarthquates(circleCenter, theRadius, localData) {
+// 	console.log("buildlocalEarthquates Data", circleCenter, theRadius);
+// 	let earthQuakeArray = [];
 
-	console.log("buildLocalEarthquakes Local Data ", localData);
-	earthQuakeArray = L.geoJSON(localData, {
-		onEachFeature: function (feature, layer) {
-			layer.bindPopup("Place:" + feature.properties.place + "<br> Magnitude: " + feature.properties.mag + "<br> Time: " + new Date(feature.properties.date));
-		},
-		pointToLayer: createCircles
+// 	console.log("buildLocalEarthquakes Local Data ", localData);
+// 	earthQuakeArray = L.geoJSON(localData, {
+// 		onEachFeature: function (feature, layer) {
+// 			layer.bindPopup("Place:" + feature.properties.place + "<br> Magnitude: " + feature.properties.mag + "<br> Time: " + new Date(feature.properties.date));
+// 		},
+// 		pointToLayer: createCircles
 
-	});
-	console.log("earthquake array", earthQuakeArray);
+// 	});
+// 	console.log("earthquake array", earthQuakeArray);
 
 // 	let feature = localData[0].features[0];
 // 	let latlong = {
@@ -81,7 +81,7 @@ function buildLocalEarthquates(circleCenter, theRadius, localData) {
 
 // 	return earthQuakeArray;
 
-}
+// }
 function createMap(earthQuakes) {
 	// Add layer for map
 	var lightMap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}", {
@@ -142,7 +142,7 @@ function createMap(earthQuakes) {
 		
 
 
-		// myMap.removeLayer(earthQuakes);
+		myMap.removeLayer(earthQuakes);
 
 
 		myMap.flyTo([latitude, longitude], 6, {
@@ -152,34 +152,34 @@ function createMap(earthQuakes) {
 		latlongMarker.addTo(myMap); 
 		latlongRadius.addTo(myMap).bringToBack();
 
-		d3.json(`/api/v1.0/points-inside/${circleCenter[0]}/${circleCenter[1]}/${theRadius}`, function (localEarthquakes) {
-			console.log("local earthquakes", localEarthquakes);
+		// d3.json(`/api/v1.0/points-inside/${circleCenter[0]}/${circleCenter[1]}/${theRadius}`, function (localEarthquakes) {
+		// 	console.log("local earthquakes", localEarthquakes);
 
 
-			var earthquakeMarkers = buildLocalEarthquates(circleCenter, theRadius, localEarthquakes);
-			console.log(earthquakeMarkers);
-			earthQuakes = L.layerGroup(earthquakeMarkers);
-			earthQuakes.addTo(myMap);
-		});
-		// var url2 = '../static/js/output.json';
-		// console.log(url2);
-		// d3.json(url2, function (data) {
-		// 	// console.log(data);
-		// 	console.log(data);
-		
-		// 	// Create popups to display earthquake info
-		// 	var earthQuakes2 = L.geoJSON(data, {
-		// 		onEachFeature: function (feature, layer) {
-		// 			layer.bindPopup("Place:" + feature.properties.place + "<br> Magnitude: " + feature.properties.mag + "<br> Time: " + new Date(feature.properties.date));
-		// 		},
-		// 		pointToLayer: createCircles
-		
-		// 	});
-		
-		// 	// createMap(earthQuakes);
-		// 	earthquakes2.addTo(myMap);
-		
+		// 	var earthquakeMarkers = buildLocalEarthquates(circleCenter, theRadius, localEarthquakes);
+		// 	console.log(earthquakeMarkers);
+		// 	earthQuakes = L.layerGroup(earthquakeMarkers);
+		// 	earthQuakes.addTo(myMap);
 		// });
+		var url2 = '../static/js/output.geojson';
+		console.log(url2);
+		d3.json(url2, function (data) {
+			// console.log(data);
+			console.log(data);
+		
+			// Create popups to display earthquake info
+			var earthQuakes2 = L.geoJSON(data, {
+				onEachFeature: function (feature, layer) {
+					layer.bindPopup("Place:" + feature.properties.place + "<br> Magnitude: " + feature.properties.mag + "<br> Time: " + new Date(feature.properties.date));
+				},
+				pointToLayer: createCircles
+		
+			});
+		
+			// createMap(earthQuakes2);
+			earthQuakes2.addTo(myMap);
+		
+		});
 	}
 
 

@@ -37,7 +37,7 @@ def radius_search_function(lat, long, radius):
     # Plot new point
     # center.plot(ax=ax,color = 'blue',markersize=5)
     # Buffer point and plot it
-    circle = gp.GeoDataFrame(crs=None, geometry=center.buffer(radius))  # Insert radius here
+    circle = gp.GeoDataFrame(crs=None, geometry=center.buffer(radius))  # Insert radius here ( 1 = 50 miles)
 
     # circle.plot(color = 'blue',ax=ax)
     #########################################################
@@ -63,9 +63,12 @@ def radius_search_function(lat, long, radius):
     # print(pointsinside.to_dict('records'))
 
     points_inside_radius = pointsinside.to_dict('records')
+# ///////////////////////////////////////////////////////////////////
+    # return(points_inside_radius)
 
-    return(points_inside_radius)
-
+    df = pointsinside
+    df = df.drop(columns = ['index_right', 'lat', 'long'])
+    df.to_file("output.geojson", driver="GeoJSON")
 # def df_to_geojson(df, properties, lat='latitude', lon='longitude'):
 #     geojson = {'type':'FeatureCollection', 'features':[]}
 #     for _, row in df.iterrows():
