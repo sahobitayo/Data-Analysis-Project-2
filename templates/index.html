@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Leaflet Step-1</title>
+  <title>EAT for Oil and Gas</title>
   <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
@@ -19,29 +19,75 @@
   <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
 <body>
-  <form class="form-inline">
-    <div class="form-group">
-      <label for="latInput">Latitude</label>
-      <input type="text" class="form-control" id="latInput" placeholder="Example: 10.961040">
-      <label for="longInput">Longitude</label>
-      <input type="text" class="form-control" id="longInput" placeholder="Example: -74.800957">
-    <!-- </div>
-    <div class="form-group"> -->
 
-      <label for="radius">Choose a search radius:</label>  
-      <select name="radius" id="radiusInput">
-        <option value="10">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-        <option value="250">250</option>
-        <option value="500">500</option>
-      </select>
-    <!-- </div> -->
-      <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
-      <!-- <button id="submit" type="submit" class="btn btn-default">Submit</button> -->
+  <div class="jumbotron">
+    <div class="container-fluid text-center">
+        <h2>EAT For Oil and Gas</h2>
+        <p>This is a visual analysis of earthquake, volcanoes with their emission events that occured around the world  from 
+            approximately 1960 till 2017. It is updated annually. The data was retrieved from the <u><a class="link" href="https://volcano.si.axismaps.io/"
+                    target="_blank">Smithsonian National Museum History- Global Volcanism Program</a></u>
+            After downloading the data onto our local systems, Pandas/Jupyter notebook were used to read and join all CSV files. 
+            The combined files were converted to a Postgres database. SQL queries in Pandas were used for plotting the data.
+            A Flask API was used to retrieve the data from the Postgres database and plotted using Leaflet, D3 and Plotly. 
+            The website was deployed onto Heroku.
+        </p>
+        <br>
+        <!-- <li class="nav-item">
+          <a class="btn button pull-right" href="index.html">Back to Homepage</a>
+        </li> -->
+       
+            <div class="col-md-6">
+                <div class="btn-toolbar" role="group" aria-label="...">
+                    <button type="button" class="btn button pull-right"><a href="magvdepth.html">Magnitude vs Depth</a></button>
+                    <button type="button" class="btn button pull-right"><a href="decade.html">Time Line Chart</a></button>
+                    <button type="button" class="btn button pull-right"><a href="depthvmag.html">Depth vs Magnitude</a></button>
+                </div>
+            </div>
+        </div>
     </div>
-  </form>
+</div>
+<!-- The div where we will inject our map -->
+<div id="map"></div>
+<div class="row">
+    <div class="col-md-12 ">
+        <div id="bubble-chart"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-10">
+        <div id="pie-chart"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="stacked-bar-chart"></div>
+    </div>
+</div>
+<form id = "input" class="form-inline">
+  <div  class="form-group">
+    <label for="latInput">Latitude</label>
+    <input type="text" class="form-control" id="latInput" placeholder="Example: 10.961040">
+    <label for="longInput">Longitude</label>
+    <input type="text" class="form-control" id="longInput" placeholder="Example: -74.800957">
+  <!-- </div>
+  <div class="form-group"> -->
+
+    <label for="radius">Choose a search radius:</label>  
+    <select name="radius" id="radiusInput">
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+      <option value="250">250</option>
+      <option value="500">500</option>
+    </select>
+  <!-- </div> -->
+    <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+    <!-- <button id="submit" type="submit" class="btn btn-default">Submit</button> -->
+  </div>
+</form>
   <!-- The div that holds our map -->
   <div id="map"></div>
 

@@ -9,119 +9,74 @@ import matplotlib.pyplot as plt
 from shapely.geometry import Point
 from flask import Flask, jsonify
 
-# From Jupyter Notebook Code
-# Read in geojson file
-########################################################################
-data = gpd.read_file("static/js/earthquakes_data_json.geojson")
-######################################################################
-# Create dataframe 
-df = pd.DataFrame(data)
+def radius_search_function(lat, long, radius):
+    print("Hello from a function")
+    # From Jupyter Notebook Code
+    # Read in geojson file
+    ########################################################################
+    data = gpd.read_file("static/js/earthquakes_data_json.geojson")
+    ######################################################################
+    # Create dataframe 
+    df = pd.DataFrame(data)
 
-# df.head()
+    # df.head()
 
-# create Geometry series with lat / longitude
-geometry = [Point(xy) for xy in (df.geometry)]
-
-
-# df = df.drop(['Longitude', 'Latitude'], axis = 1)
-
-# Create GeoDataFrame
-points = gp.GeoDataFrame(df, crs=None, geometry=geometry)
-
-# Create Matplotlib figure
-# fig, ax = plt.subplots()
-
-# Set Axes to equal (otherwise plot looks weird)
-# ax.set_aspect('equal')
-
-# Plot GeoDataFrame on Axis ax
-# points.plot(ax=ax,marker='o', color='red', markersize=5)
-
-# Create new point   
-center_coord = [Point(-109.1, 43.8)]  # Insert Lat and Long here
-center = gp.GeoDataFrame(crs=None, geometry=center_coord)
-
-# Plot new point
-# center.plot(ax=ax,color = 'blue',markersize=5)
-# Buffer point and plot it
-circle = gp.GeoDataFrame(crs=None, geometry=center.buffer(10.0))  # Insert radius here
-
-# circle.plot(color = 'blue',ax=ax)
-#########################################################
-# Calculate the points inside the circle 
-
-pointsinside = gp.sjoin(points,circle,how="inner")
-# print(pointsinside)
-# pointsinside.type
+    # create Geometry series with lat / longitude
+    geometry = [Point(xy) for xy in (df.geometry)]
 
 
-# Now the points outside the circle is just the difference 
-# between  points and points inside (see the ~)
+    # df = df.drop(['Longitude', 'Latitude'], axis = 1)
 
-pointsoutside = points[~points.index.isin(pointsinside.index)]
+    # Create GeoDataFrame
+    points = gp.GeoDataFrame(df, crs=None, geometry=geometry)
+
+    # Create new point   
+    center_coord = [Point(long, lat)]  # Insert Lat and Long here
+    center = gp.GeoDataFrame(crs=None, geometry=center_coord)
+
+    # Plot new point
+    # center.plot(ax=ax,color = 'blue',markersize=5)
+    # Buffer point and plot it
+    circle = gp.GeoDataFrame(crs=None, geometry=center.buffer(radius))  # Insert radius here
+
+    # circle.plot(color = 'blue',ax=ax)
+    #########################################################
+    # Calculate the points inside the circle 
+
+    pointsinside = gp.sjoin(points,circle,how="inner")
+    # print(pointsinside)
+    # pointsinside.type
 
 
-# # Create a nice plot 
-# fig, ax = plt.subplots()
-# ax.set_aspect('equal')
-# circle.plot(color = 'white',ax=ax)
-# center.plot(ax=ax,color = 'blue',markersize=5)
-# pointsinside.plot(ax=ax,marker='o', color='green', markersize=5)
+    # Now the points outside the circle is just the difference 
 
-# pointsoutside.plot(ax=ax,marker='o', color='yellow', markersize=5)
+    pointsoutside = points[~points.index.isin(pointsinside.index)]
 
-# print('Total points:' ,len(points))
-# print('Points inside circle:' ,len(pointsinside))
-# print('Points outside circle:' ,len(pointsoutside))
+    pointsinside.apply(lambda x: x.name).to_dict()
 
-########################################################################
+    # pointsinside["geometry"]
 
-pointsinside.apply(lambda x: x.name).to_dict()
+    pointsinside['lat'] = pointsinside['geometry'].y
+    pointsinside['long'] = pointsinside['geometry'].x
+    # pointsinside
 
-# pointsinside["geometry"]
+    # print(pointsinside.to_dict('records'))
 
-pointsinside['lat'] = pointsinside['geometry'].y
-pointsinside['long'] = pointsinside['geometry'].x
-# pointsinside
+    points_inside_radius = pointsinside.to_dict('records')
 
-# print(pointsinside.to_dict('records'))
+    return(points_inside_radius)
 
-points_inside_radius = pointsinside.to_dict('records')
-
+# def df_to_geojson(df, properties, lat='latitude', lon='longitude'):
+#     geojson = {'type':'FeatureCollection', 'features':[]}
+#     for _, row in df.iterrows():
+#         feature = {'type':'Feature',
+#                    'properties':{},
+#                    'geometry':{'type':'Point',
+#                                'coordinates':[]}}
+#         feature['geometry']['coordinates'] = [row[lon],row[lat]]
+#         for prop in properties:
+#             feature['properties'][prop] = row[prop]
+#         geojson['features'].append(feature)
+#     return geojson
 # print(points_inside_radius)
-
-# ask the user for lat and long, and radius
-# 2: manipulation from above to get the pointsinside
-# turn pointsinside dict into a json 
-# serve as a json/api and consume in javascript 
-
-# do all of this inside app.py 
-
-
-# justice_league_members = [
-#     {"superhero": "Aquaman", "real_name": "Arthur Curry"},
-#     {"superhero": "Batman", "real_name": "Bruce Wayne"},
-#     {"superhero": "Cyborg", "real_name": "Victor Stone"},
-#     {"superhero": "Flash", "real_name": "Barry Allen"},
-#     {"superhero": "Green Lantern", "real_name": "Hal Jordan"},
-#     {"superhero": "Superman", "real_name": "Clark Kent/Kal-El"},
-#     {"superhero": "Wonder Woman", "real_name": "Princess Diana"}
-# ]
-
-#################################################
-# Flask Setup
-#################################################
-app = Flask(__name__)
-
-
-#################################################
-# Flask Routes
-#################################################
-
-@app.route("/api/v1.0/points-inside")
-def justice_league():
-    """Return the points inside radius data as json"""
-
-    return jsonify(points_inside_radius)
-
-print(points_inside_radius)
+radius_search_function(lat, long, radius)
