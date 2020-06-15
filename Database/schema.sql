@@ -10,7 +10,7 @@ CREATE TABLE "earthquakes" (
     "depth" numeric   NOT NULL,
     "mag" numeric   NOT NULL,
     "id" varchar(30)   NOT NULL,
-    "place" varchar(500) ,
+    "place" varchar(500),
     CONSTRAINT "pk_earthquakes" PRIMARY KEY (
         "id"
      )
@@ -31,8 +31,8 @@ CREATE TABLE "emissions" (
     "SO2_Kilotons" Numeric   NOT NULL,
     "StartDate" Date   NOT NULL,
     "EndDate" Date   NOT NULL,
-    "GeoLocation" point   NOT NULL,
-    "Emission_ID" INT   NOT NULL
+    "Emission_ID" INT   NOT NULL PRIMARY KEY
+   
 );
 
 CREATE TABLE "eruptions" (
@@ -51,8 +51,8 @@ CREATE TABLE "eruptions" (
     "ContinuingEruption" boolean   NOT NULL,
     "LatitudeDecimal" Decimal(8,6)   NOT NULL,
     "LongitudeDecimal" Decimal(9,6)   NOT NULL,
-    "GeoLocation" point   NOT NULL,
-    "Activity_ID" INT   NOT NULL
+    "Activity_ID" INT   NOT NULL PRIMARY KEY
+   
 );
 
 ALTER TABLE "emissions" ADD CONSTRAINT "fk_emissions_VolcanoNumber_VolcanoName" FOREIGN KEY("VolcanoNumber", "VolcanoName")
@@ -60,5 +60,4 @@ REFERENCES "code" ("VolcanoNumber", "VolcanoName");
 
 ALTER TABLE "eruptions" ADD CONSTRAINT "fk_eruptions_VolcanoNumber_VolcanoName" FOREIGN KEY("VolcanoNumber", "VolcanoName")
 REFERENCES "code" ("VolcanoNumber", "VolcanoName");
-
 

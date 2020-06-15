@@ -3,9 +3,9 @@
 api_key = "pk.eyJ1Ijoic2Fob2JpdGF5byIsImEiOiJja2FnMHk4b3QwMTN1MnJzMnVrNHhjYWo4In0.rXx1TpZ65qMxOandee2DxQ"
 
 
-ServerName = "localhost"
+ServerName = "map-db.cqzrlm7geovg.us-east-2.rds.amazonaws.com"
 UserName = "postgres"
-Password = "postgres"
+Password = "mchalo2000"
 port = "5432"
 DataBase = "map_db"
 
