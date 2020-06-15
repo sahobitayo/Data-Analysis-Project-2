@@ -144,7 +144,7 @@ def allcode():
         row = {}
         row["volcano_number"] = vol_num
         row["volcano_name"] = vol_name
-        allemissions.append(row)
+        allcode.append(row)
 
     return jsonify(allcode)
 
