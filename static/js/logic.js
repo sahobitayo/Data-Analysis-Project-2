@@ -1,212 +1,111 @@
-// Create our initial map object
-// Set the longitude, latitude, and the starting zoom level
+// Create variable for URL and link to earthquake data   
+// var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+var url = '../static/js/earthquakes_data_json.geojson';
+// Create variable to adjust circle size when zooming in and out
+var zoomMap = 1
+var temp = true;
+// Create circles for earthquake data 
+function createCircles(feature, latlong) {
+	// console.log(latlong)
 
-var runMarkers = [];
 
-var queryUrl = 'static/js/earthquakes_data_json.geojson';
-
-var zoomMap = 2;
-
-// Perform a GET request to the query URL
-d3.json(queryUrl, function(data) {
-	// Once we get a response, send the data.features object to the createFeatures function
-	for (var i = 0; i < data.features.length; i++) {
-		// console.log(data.features[i].properties.mag);
-		// var  earthquakeData = data[i];
-		if (data.features[i].properties.mag > 5 && data.features[i].properties.mag <= 5.5) {
-			runMarkers.push(
-				L.circle([ data.features[i].geometry.coordinates[1], data.features[i].geometry.coordinates[0] ], {
-					stroke: false,
-					fillColor: 'blue',
-					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 1000 * zoomMap
-				}).bindPopup(
-					'<i>' +
-						data.features[i].properties.place +
-						'</i><hr>' +
-						'<b>Magnitude</b>: ' +
-						data.features[i].properties.mag +
-						'<br>' +
-						'<b>Lat Lng</b>: ' +
-						data.features[i].geometry.coordinates[1] +
-						',' +
-						data.features[i].geometry.coordinates[0] +
-						'<br>' +
-						'<b>Depth</b>: ' +
-						data.features[i].properties.depth +
-						' Kilometers<br>'
-				)
-			);
-			continue;
-		} else if (data.features[i].properties.mag > 5.5 && data.features[i].properties.mag <= 6) {
-			runMarkers.push(
-				L.circle([ data.features[i].geometry.coordinates[1], data.features[i].geometry.coordinates[0] ], {
-					stroke: false,
-					fillColor: 'LightGreen',
-					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * zoomMap
-				}).bindPopup(
-					'<i>' +
-						data.features[i].properties.place +
-						'</i><hr>' +
-						'<b>Magnitude</b>: ' +
-						data.features[i].properties.mag +
-						'<br>' +
-						'<b>Lat Lng</b>: ' +
-						data.features[i].geometry.coordinates[1] +
-						',' +
-						data.features[i].geometry.coordinates[0] +
-						'<br>' +
-						'<b>Depth</b>: ' +
-						data.features[i].properties.depth +
-						' Kilometers<br>'
-				)
-			);
-			continue;
-		} else if (data.features[i].properties.mag > 6 && data.features[i].properties.mag <= 7) {
-			runMarkers.push(
-				L.circle([ data.features[i].geometry.coordinates[1], data.features[i].geometry.coordinates[0] ], {
-					stroke: false,
-					fillColor: 'green',
-					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 4000 * zoomMap
-				}).bindPopup(
-					'<i>' +
-						data.features[i].properties.place +
-						'</i><hr>' +
-						'<b>Magnitude</b>: ' +
-						data.features[i].properties.mag +
-						'<br>' +
-						'<b>Lat Lng</b>: ' +
-						data.features[i].geometry.coordinates[1] +
-						',' +
-						data.features[i].geometry.coordinates[0] +
-						'<br>' +
-						'<b>Depth</b>: ' +
-						data.features[i].properties.depth +
-						' Kilometers<br>'
-				)
-			);
-			continue;
-		} else if (data.features[i].properties.mag > 7 && data.features[i].properties.mag <= 8) {
-			runMarkers.push(
-				L.circle([ data.features[i].geometry.coordinates[1], data.features[i].geometry.coordinates[0] ], {
-					stroke: false,
-					fillColor: 'yellow',
-					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 6000 * zoomMap
-				}).bindPopup(
-					'<i>' +
-						data.features[i].properties.place +
-						'</i><hr>' +
-						'<b>Magnitude</b>: ' +
-						data.features[i].properties.mag +
-						'<br>' +
-						'<b>Lat Lng</b>: ' +
-						data.features[i].geometry.coordinates[1] +
-						',' +
-						data.features[i].geometry.coordinates[0] +
-						'<br>' +
-						'<b>Depth</b>: ' +
-						data.features[i].properties.depth +
-						' Kilometers<br>'
-				)
-			);
-			continue;
-		} else if (data.features[i].properties.mag > 8 && data.features[i].properties.mag <= 9) {
-			runMarkers.push(
-				L.circle([ data.features[i].geometry.coordinates[1], data.features[i].geometry.coordinates[0] ], {
-					stroke: false,
-					fillColor: 'orange',
-					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 8000 * zoomMap
-				}).bindPopup(
-					'<i>' +
-						data.features[i].properties.place +
-						'</i><hr>' +
-						'<b>Magnitude</b>: ' +
-						data.features[i].properties.mag +
-						'<br>' +
-						'<b>Lat Lng</b>: ' +
-						data.features[i].geometry.coordinates[1] +
-						',' +
-						data.features[i].geometry.coordinates[0] +
-						'<br>' +
-						'<b>Depth</b>: ' +
-						data.features[i].properties.depth +
-						' Kilometers<br>'
-				)
-			);
-			continue;
-		} else {
-			runMarkers.push(
-				L.circle([ data.features[i].geometry.coordinates[1], data.features[i].geometry.coordinates[0] ], {
-					stroke: false,
-					fillColor: 'black',
-					fillOpacity: 0.5,
-					radius: data.features[i].properties.mag * 10000 * zoomMap
-				}).bindPopup(
-					'<i>' +
-						data.features[i].properties.place +
-						'</i><hr>' +
-						'<b>Magnitude</b>: ' +
-						data.features[i].properties.mag +
-						'<br>' +
-						'<b>Lat Lng</b>: ' +
-						data.features[i].geometry.coordinates[1] +
-						',' +
-						data.features[i].geometry.coordinates[0] +
-						'<br>' +
-						'<b>Depth</b>: ' +
-						data.features[i].properties.depth +
-						' Kilometers<br>'
-				)
-			);
-			continue;
-		}
+	let options = {
+		radius: feature.properties.mag * zoomMap,
+		fillColor: getColor(feature.properties.mag),
+		color: "brown",
+		weight: 1,
+		opacity: 0.8,
+		fillOpacity: 0.6
+		// zIndexOffset: 1000
 	}
 
-	var runLayer = L.layerGroup(runMarkers);
+	if (temp == true) {
+		console.log(L.circleMarker(latlong, options));
+		temp = false;
+	}
+	return L.circleMarker(latlong, options);
 
-	var satellite = L.tileLayer(
-		'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}',
-		{
-			attribution:
-				'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-			maxZoom: 18,
-			minZoom: 1,
-			id: 'mapbox.satellite',
-			accessToken: API_KEY
-		}
-	);
+}
 
-	// var street = L.tileLayer(
-	// 	'https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}',
-	// 	{
-	// 		attribution:
-	// 			'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-	// 		maxZoom: 18,
-	// 		minZoom: 1,
-	// 		id: 'mapbox.street',
-	// 		accessToken: API_KEY
-	// 	}
-	// );
 
-	var myMap = L.map('map', {
-		center: [ 25, -20 ],
-		zoom: zoomMap,
-		layers: [ satellite, runLayer ]
+//  Load json data
+d3.json(url, function (data) {
+	// console.log(data);
+
+
+	// Create popups to display earthquake info
+	var earthQuakes = L.geoJSON(data, {
+		onEachFeature: function (feature, layer) {
+			layer.bindPopup("Place:" + feature.properties.place + "<br> Magnitude: " + feature.properties.mag + "<br> Time: " + new Date(feature.properties.date));
+		},
+		pointToLayer: createCircles
+
 	});
 
-	// Overlays that may be toggled on or off
-	var overlayMaps = {
-		Earthquakes: runLayer
-	};
+	createMap(earthQuakes);
 
-	var baseMaps = {
-		Satellite: satellite
-		// Street: street
-	};
+});
+// // Filtered data for new earthquakes
+// function buildLocalEarthquates(circleCenter, theRadius, localData) {
+// 	console.log("buildlocalEarthquates Data", circleCenter, theRadius);
+// 	let earthQuakeArray = [];
+
+// 	console.log("buildLocalEarthquakes Local Data ", localData);
+// 	earthQuakeArray = L.geoJSON(localData, {
+// 		onEachFeature: function (feature, layer) {
+// 			layer.bindPopup("Place:" + feature.properties.place + "<br> Magnitude: " + feature.properties.mag + "<br> Time: " + new Date(feature.properties.date));
+// 		},
+// 		pointToLayer: createCircles
+
+// 	});
+// 	console.log("earthquake array", earthQuakeArray);
+
+// 	let feature = localData[0].features[0];
+// 	let latlong = {
+// 		lat: feature.geometry.coordinates[1],
+// 		lng: feature.geometry.coordinates[0]
+// 	};
+// 	let circle = createCircles(feature, latlong);
+// 	earthQuakeArray.push(circle.bindPopup("Place:" + feature.properties.place + "<br> Magnitude: " + feature.properties.mag + "<br> Time: " + new Date(feature.properties.date)));
+
+
+// 	// localData.array.forEach(feature => {
+// 	// 	feature = feature.features;
+// 	// 	let latlong = {
+// 	// 		lat: feature.geometry.coordinates[1],
+// 	// 		lng: feature.geometry.coordinates[0]
+// 	// 	};
+// 	// 	let circle = createCircles(feature, latlong);
+// 	// 	earthQuakeArray.push(circle.bindPopup("Place:" + feature.properties.place + "<br> Magnitude: " + feature.properties.mag + "<br> Time: " + new Date(feature.properties.date)));
+// 	// });
+
+// 	return earthQuakeArray;
+
+// }
+function createMap(earthQuakes) {
+	// Add layer for map
+	var lightMap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}", {
+		attribution: "Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://mapbox.com\">Mapbox</a>",
+		maxZoom: 18,
+		id: "mapbox.light",
+		accessToken: API_KEY
+	});
+
+	// Create variable and define map
+	var myMap = L.map("map", {
+		center: [
+			37.383064, -109.071236
+		],
+		zoom: zoomMap,
+		layers: [lightMap, earthQuakes]
+	});
+
+	// result.addTo(myMap);
+
+	// Create a legend for map
+	var magLegend = L.control({
+		position: "bottomright"
+	});
 
 	function handleSubmit(event) {
 		// Prevent the page from refreshing
@@ -225,7 +124,7 @@ d3.json(queryUrl, function(data) {
 		buttonClick(latitude, longitude, dist);
 	}
 
-	function buttonClick(latitude, longitude, dist) { 
+	function buttonClick(latitude, longitude, dist) {
 		console.log('it run the function');
 		console.log(dist);
 		// var dist = 50;
@@ -233,53 +132,65 @@ d3.json(queryUrl, function(data) {
 		var circleCenter = [latitude, longitude];
 		var circleOptions = {
 			color: 'red',
-			fillColor: '#f03',
+			fillColor: 'white',
 			fillOpacity: 0
-		 }
-		var latlongMarker = L.marker([latitude, longitude]).bindPopup("Lat: "+latitude + "</br>" + "Long: "+longitude);
+			// zIndexOffset: -1000
+		}
+		// Creating variables for radius circle and user input lat and long marker
+		var latlongMarker = L.marker([latitude, longitude]).bindPopup("Lat: " + latitude + "</br>" + "Long: " + longitude);
 		var latlongRadius = L.circle(circleCenter, theRadius, circleOptions).bindPopup(dist + " miles");
 		
-		myMap.flyTo([ latitude, longitude ], 6, {
+
+
+		myMap.removeLayer(earthQuakes);
+
+
+		myMap.flyTo([latitude, longitude], 6, {
 			animate: true,
 			duration: 2 // in seconds
-		});latlongMarker.addTo(myMap);latlongRadius.addTo(myMap);
-		var earthquakesMarkers = buildLocalEarthquates(circleCenter, CircleOptions, theRadius);
-		earthquakesMarkers.addTo(myMap);
-	}
-	// function SelectPoints(latitude,longitude){ var dist = document.getElementById("radiusInput").value;
-	// 	xy = [latitude,longitude];  //center point of circle
+		});
+		latlongMarker.addTo(myMap); 
+		latlongRadius.addTo(myMap).bringToBack();
 
-	// 	var theRadius = parseInt(dist) * 1609.34  //1609.34 meters in a mile 
-	// 	//dist is a string so it's convered to an Interger.
-	
-	// 	selPts.length =0;  //Reset the array if selecting new points
-	
-	// 	layer1.eachLayer(function (layer) {
-	// 		// Lat, long of current point as it loops through.
-	// 		layer_lat_long = layer.getLatLng();
-	
-	// 		// Distance from our circle marker To current point in meters
-	// 		distance_from_centerPoint = layer_lat_long.distanceTo(xy);
-	
-	// 		// See if meters is within radius, add the to array
-	// 		if (distance_from_centerPoint <= theRadius) {
-	// 		 selPts.push(layer.satellite); 
-	// 			// selPts.addTo(myMap)
-	// 		}
-	// 	});
+		// d3.json(`/api/v1.0/points-inside/${circleCenter[0]}/${circleCenter[1]}/${theRadius}`, function (localEarthquakes) {
+		// 	console.log("local earthquakes", localEarthquakes);
+
+
+		// 	var earthquakeMarkers = buildLocalEarthquates(circleCenter, theRadius, localEarthquakes);
+		// 	console.log(earthquakeMarkers);
+		// 	earthQuakes = L.layerGroup(earthquakeMarkers);
+		// 	earthQuakes.addTo(myMap);
+		// });
+		var url2 = '../static/js/output.geojson';
+		console.log(url2);
+		d3.json(url2, function (data) {
+			// console.log(data);
+			console.log(data);
+		
+			// Create popups to display earthquake info
+			var earthQuakes2 = L.geoJSON(data, {
+				onEachFeature: function (feature, layer) {
+					layer.bindPopup("Place:" + feature.properties.place + "<br> Magnitude: " + feature.properties.mag + "<br> Time: " + new Date(feature.properties.date));
+				},
+				pointToLayer: createCircles
+		
+			});
+		
+			// createMap(earthQuakes2);
+			earthQuakes2.addTo(myMap);
+		
+		});
+	}
+
 
 	document.getElementById('submitBtn').addEventListener('click', handleSubmit);
-	
-	// Add a tile layer (the background map image) to our map
-	// We use the addTo method to add objects to our map
-	L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
 	var legend = L.control({ position: 'bottomleft' });
 
-	legend.onAdd = function(map) {
+	legend.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'legend'),
-			mags = [ '5 to 5.5', '5.5 - 6', '6-7', '7-8', '8-9', '+9' ];
-		colors = [ 'purple', 'blue', 'green', 'yellow', 'orange', 'red' ];
+			mags = ['5 to 5.5', '5.5 - 6', '6-7', '7-8', '8-9', '+9'];
+		colors = ['purple', 'blue', 'green', 'yellow', 'orange', 'red'];
 		div.id = 'legend';
 		div.innerHTML = '<strong>Magnitude Colors</strong><br><br>';
 		// loop through our density intervals and generate a label with a colored square for each interval
@@ -297,4 +208,26 @@ d3.json(queryUrl, function(data) {
 	};
 
 	legend.addTo(myMap);
-});
+}
+// Create function to set the color dependent on magnitude
+function getColor(mag) {
+
+	if (mag >= 9) {
+		return "red";
+	}
+	else if (mag >= 8) {
+		return "orange";
+	}
+	else if (mag >= 7) {
+		return "yellow";
+	}
+	else if (mag >= 6) {
+		return "green";
+	}
+	else if (mag >= 5.5) {
+		return "blue";
+	}
+	else {
+		return "purple";
+	}
+};
