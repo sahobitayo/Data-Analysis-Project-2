@@ -8,7 +8,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session,sessionmaker
 from sqlalchemy import create_engine, distinct, func, inspect
 from sqlalchemy import MetaData,Table,Column
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, send_file
 from flask_sqlalchemy import SQLAlchemy
 from config import ServerName, UserName, Password, DataBase
 
@@ -162,6 +162,11 @@ def depthvmag():
 def magvdepth():
     """Return the magvdepth page."""
     return render_template("magvdepth.html")
+
+@app.route("/output")
+def output():
+    """Return filter file."""
+    return send_file("output.geojson") 
 
 
 # on of the routes has to be an API route that lat, long, radius...week 10 day 3 activity 8(variable rule)

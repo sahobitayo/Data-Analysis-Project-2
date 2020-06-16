@@ -1,2 +1,0 @@
-latitude,longitude,altitude,geometry,date,depth,mag,id,place
--55.877,-1.89,,Point,19600102,15,6.3,iscgem877909,Bouvet Island region

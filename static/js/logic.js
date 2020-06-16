@@ -1,6 +1,8 @@
 // Create variable for URL and link to earthquake data
-// var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+
 var url = '/earthquake';
+// console.log(url);
+// var url = '../database/earthquakes_data_json.geojson';
 // Create variable to adjust circle size when zooming in and out
 var zoomMap = 1.8;
 var temp = true;
@@ -28,10 +30,33 @@ function createCircles(feature, latlong) {
 
 //  Load json data
 d3.json(url, function(data) {
-	// console.log(data);
+	console.log(data);
+	var geoData = {
+		type: 'FeatureCollection'
+	};
+
+	var featureList = [];
+	data.forEach((d) => {
+		var perObject = {
+			type: 'Feature',
+			properties: {
+				date: d.date,
+				depth: d.depth,
+				mag: d.mag,
+				place: d.place
+			},
+			geometry: {
+				type: 'Point',
+				coordinates: [ d.longitude, d.latitude ]
+			}
+		};
+		featureList.push(perObject);
+	});
+	console.log('featureLIst', featureList);
+	geoData['features'] = featureList;
 
 	// Create popups to display earthquake info
-	var earthQuakes = L.geoJSON(data, {
+	var earthQuakes = L.geoJSON(geoData, {
 		onEachFeature: function(feature, layer) {
 			layer.bindPopup(
 				'Place:' +
@@ -110,8 +135,8 @@ function createMap(earthQuakes) {
 	}
 
 	function buttonClick(latitude, longitude, dist) {
-		console.log('it run the function');
-		console.log(dist);
+		// console.log('it run the function');
+		// console.log(dist);
 		// var dist = 50;
 		var theRadius = parseInt(dist) * 1609.34; //1609.34 meters in a mile
 		var circleCenter = [ latitude, longitude ];
@@ -136,11 +161,11 @@ function createMap(earthQuakes) {
 		latlongMarker.addTo(myMap);
 		latlongRadius.addTo(myMap).bringToBack();
 
-		var url2 = '/output.geojson';
+		var url2 = '/output';
 		console.log(url2);
 		d3.json(url2, function(data) {
 			// console.log(data);
-			console.log(data);
+			console.log('URL 2', data);
 
 			// Create popups to display earthquake info
 			var earthQuakes2 = L.geoJSON(data, {
@@ -154,12 +179,14 @@ function createMap(earthQuakes) {
 							new Date(feature.properties.date)
 					);
 				},
+
 				pointToLayer: createCircles
 			});
 
+			console.log(earthQuakes2);
 			// createMap(earthQuakes2);
 			earthQuakes2.addTo(myMap);
-			earthQuakes.addTo(myMap);
+			// earthQuakes.addTo(myMap);
 		});
 	}
 
