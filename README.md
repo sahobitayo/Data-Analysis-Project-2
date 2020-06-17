@@ -5,7 +5,7 @@ The purpose of this project is to develop a tool that is designed to visually id
 
 
 
-<img src= "Images/front_endapp.png" width = "800">
+<img src= "Images/Readme.gif">
 
 ## Instructions
 ---
@@ -17,6 +17,7 @@ UserName = "YOUR POSTGRESQL USERNAME"
 Password = "YOUR POSTGRESQL PASSWORD"
 DataBase = "YOUR POSTGRESQL DATABASE NAME"  
 ```
+<img src= "Images/QuickDBD.png" width = "800">
 4) Run the Flask server by running the ```app.py``` file.
 5) Run the IP address created by the Flask server which should look like http://127.0.0.1:5000/ or similar. This renders the ```index.html``` file homepage which can be used to navigate through the visualizations.
 ---
